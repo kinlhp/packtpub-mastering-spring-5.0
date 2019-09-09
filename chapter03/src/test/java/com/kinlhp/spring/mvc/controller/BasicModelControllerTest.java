@@ -10,22 +10,23 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-public class BasicViewControllerTest {
+public class BasicModelControllerTest {
     private MockMvc mockMvc;
     private ViewResolver viewResolver;
 
     @Before
     public void setup() {
         this.viewResolver = createViewResolver();
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new BasicViewController()).setViewResolvers(this.viewResolver)
-                .build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new BasicModelController())
+                .setViewResolvers(this.viewResolver).build();
     }
 
     @Test
     public void testWelcome() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/welcome").accept("application/html;charset=utf-8"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("welcome-view"));
+                .andExpect(MockMvcResultMatchers.view().name("welcome-model"))
+                .andExpect(MockMvcResultMatchers.model().attribute("name", "Foo"));
     }
 
     private ViewResolver createViewResolver() {
