@@ -3,13 +3,14 @@ package com.kinlhp.spring.mvc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class BasicModelController {
+public class BasicModelAndViewController {
 
     @RequestMapping(path = { "/welcome" })
-    public String welcome(final ModelMap modelMap) {
+    public ModelAndView welcome(final ModelMap modelMap) {
         modelMap.put("name", "Foo");
-        return "welcome-model";
+        return new ModelAndView("welcome-modelAndView", modelMap);
     }
 }

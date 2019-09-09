@@ -10,14 +10,14 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-public class BasicModelControllerTest {
+public class BasicModelAndViewControllerTest {
     private MockMvc mockMvc;
     private ViewResolver viewResolver;
 
     @Before
     public void setup() {
         this.viewResolver = createViewResolver();
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new BasicModelController())
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new BasicModelAndViewController())
                 .setViewResolvers(this.viewResolver).build();
     }
 
@@ -25,12 +25,12 @@ public class BasicModelControllerTest {
     public void testWelcome() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/welcome").accept("application/html;charset=utf-8"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("welcome-model"))
+                .andExpect(MockMvcResultMatchers.view().name("welcome-modelAndView"))
                 .andExpect(MockMvcResultMatchers.model().attribute("name", "Foo"));
     }
 
     private ViewResolver createViewResolver() {
-        final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver("/WEB-INF/views/", ".jsp");
+        final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver("/WEB-INF/views", ".jsp");
         viewResolver.setViewClass(JstlView.class);
         return viewResolver;
     }

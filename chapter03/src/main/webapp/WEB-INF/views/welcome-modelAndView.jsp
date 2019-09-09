@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <p>Welcome ${name}! This is comming from a model - a JSP.</p>
+    <p>Welcome ${name}! This is coming from a model and view - a JSP.</p>
 </body>
 
 </html>
