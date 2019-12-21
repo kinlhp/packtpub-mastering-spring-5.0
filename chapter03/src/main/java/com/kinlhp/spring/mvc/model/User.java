@@ -1,13 +1,29 @@
 package com.kinlhp.spring.mvc.model;
 
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Size;
+
 public class User {
-    private String guid;
-    private String name;
-    private String password;
+    private String guid = "";
+
+    @Size(min = 6, message = "Enter at least 6 characters")
+    private String name = "";
+
+    @Size(min = 8, message = "Enter at least 8 characters")
+    private String password = "";
+
+    @Size(min = 8, message = "Enter at least 8 characters")
     private String password2;
-    private String userId;
+
+    @Size(min = 8, message = "Enter at least 8 characters")
+    private String userId = "";
 
     public User() {
+    }
+
+    @AssertTrue(message = "Password fields don't match")
+    private boolean isValid() {
+        return this.password.equals(this.password2);
     }
 
     public String getGuid() {
@@ -52,7 +68,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [guid=" + guid + ", name=" + name + ", password=" + password + ", password2=" + password2
-                + ", userId=" + userId + "]";
+        return String.format("User [guid=%s, name=%s, password=%s, password2=%s, userId=%s]", 
+                guid, name, password, password2, userId);
     }
 }

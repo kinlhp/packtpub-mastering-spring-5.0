@@ -1,26 +1,32 @@
 package com.kinlhp.spring.mvc.controller;
 
+import javax.validation.Valid;
+
 import com.kinlhp.spring.mvc.model.User;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class UserController {
-    private static final Log LOG = LogFactory.getLog(UserController.class);
+public class UserValidationController {
+    private static final Log LOG = LogFactory.getLog(UserValidationController.class);
 
-    @RequestMapping(method = { RequestMethod.GET }, path = { "/create-user" })
+    @RequestMapping(method = { RequestMethod.GET }, path = { "/create-user-with-validation" })
     public String showCreateUserPage(final ModelMap modelMap) {
         modelMap.put("user", new User());
         return "user";
     }
 
-    @RequestMapping(method = { RequestMethod.POST }, path = { "/create-user" })
-    public String addTodo(final User user) {
+    @RequestMapping(method = { RequestMethod.POST }, path = { "/create-user-with-validation" })
+    public String addTodo(@Valid final User user, final BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "user";
+        }
         LOG.info("user details " + user);
         return "redirect:list-users";
     }
