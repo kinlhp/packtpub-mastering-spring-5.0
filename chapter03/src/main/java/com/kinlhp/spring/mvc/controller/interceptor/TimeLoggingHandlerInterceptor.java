@@ -15,17 +15,20 @@ public class TimeLoggingHandlerInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) throws Exception {
+        LOGGER.info("preHandle " + request.getMethod() + " " + request.getRequestURI());
         request.setAttribute("startTime", System.currentTimeMillis());
         return super.preHandle(request, response, handler);
     }
 
     @Override
     public void postHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler, final ModelAndView modelAndView) throws Exception {
+        LOGGER.info("postHandle " + request.getMethod() + " " + request.getRequestURI());
         request.setAttribute("endTime", System.currentTimeMillis());
     }
 
     @Override
     public void afterCompletion(final HttpServletRequest request, final HttpServletResponse response, final Object handler, final Exception ex) throws Exception {
+        LOGGER.info("afterCompletion " + request.getMethod() + " " + request.getRequestURI());
         final Long startTime = (Long) request.getAttribute("startTime");
         final Long endTime = (Long) request.getAttribute("endTime");
         final Long spentTime = endTime - startTime;

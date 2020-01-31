@@ -1,9 +1,14 @@
 package com.kinlhp.spring.mvc.model;
 
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class User {
+
+    @NotNull(message = "Enter the country")
+    private Country country;
+
     private String guid = "";
 
     @Size(min = 6, message = "Enter at least 6 characters")
@@ -24,6 +29,14 @@ public class User {
     @AssertTrue(message = "Password fields don't match")
     private boolean isValid() {
         return this.password.equals(this.password2);
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public String getGuid() {
@@ -68,7 +81,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("User [guid=%s, name=%s, password=%s, password2=%s, userId=%s]", 
-                guid, name, password, password2, userId);
+        return String.format("User [guid=%s, name=%s, country=%s, password=%s, password2=%s, userId=%s]", guid, name,
+                country, password, password2, userId);
     }
 }

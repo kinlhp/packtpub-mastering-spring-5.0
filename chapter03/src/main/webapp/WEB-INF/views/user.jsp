@@ -17,6 +17,14 @@
         <form:errors path="userId" cssClass="text-warning" />
     </fieldset>
     <fieldset>
+        <form:label path="country">Country:</form:label>
+        <form:select path="country">
+            <form:option value="" label="Select" />
+            <form:options items="${countries}" />
+        </form:select>
+        <form:errors path="country" cssClass="text-warning" />
+    </fieldset>
+    <fieldset>
         <form:label path="password">Password:</form:label>
         <form:input path="password" type="password" required="required" />
         <form:errors path="password" cssClass="text-warning" />
