@@ -1,10 +1,15 @@
 package com.kinlhp.spring.mvc.model;
 
+import java.util.Date;
+
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class User {
+
+    @NotNull(message = "Enter the birth date")
+    private Date birthDate;
 
     @NotNull(message = "Enter the country")
     private Country country;
@@ -29,6 +34,14 @@ public class User {
     @AssertTrue(message = "Password fields don't match")
     private boolean isValid() {
         return this.password.equals(this.password2);
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Country getCountry() {
@@ -81,7 +94,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("User [guid=%s, name=%s, country=%s, password=%s, password2=%s, userId=%s]", guid, name,
-                country, password, password2, userId);
+        return String.format("User [guid=%s, name=%s, birthDate=%s, country=%s, password=%s, password2=%s, userId=%s]",
+                guid, name, birthDate, country, password, password2, userId);
     }
 }

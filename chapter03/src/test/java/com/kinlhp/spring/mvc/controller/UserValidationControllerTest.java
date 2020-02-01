@@ -20,8 +20,9 @@ public class UserValidationControllerTest {
         this.mockMvc
                 .perform(MockMvcRequestBuilders.post("/create-user-with-validation").accept("application/html;charset=utf-8"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.model().errorCount(5))
+                .andExpect(MockMvcResultMatchers.model().errorCount(6))
                 .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "name", "Size"))
+                .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "birthDate", "NotNull"))
                 .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "country", "NotNull"))
                 .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "password", "Size"))
                 .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "userId", "Size"));

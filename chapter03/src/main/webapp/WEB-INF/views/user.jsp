@@ -17,8 +17,13 @@
         <form:errors path="userId" cssClass="text-warning" />
     </fieldset>
     <fieldset>
+        <form:label path="birthDate">Birth date:</form:label>
+        <form:input path="birthDate" type="date" required="required" />
+        <form:errors path="birthDate" cssClass="text-warning" />
+    </fieldset>
+    <fieldset>
         <form:label path="country">Country:</form:label>
-        <form:select path="country">
+        <form:select path="country" required="required">
             <form:option value="" label="Select" />
             <form:options items="${countries}" />
         </form:select>
@@ -26,12 +31,12 @@
     </fieldset>
     <fieldset>
         <form:label path="password">Password:</form:label>
-        <form:input path="password" type="password" required="required" />
+        <form:password path="password" required="required" />
         <form:errors path="password" cssClass="text-warning" />
     </fieldset>
     <fieldset>
         <form:label path="password2">Reenter Password:</form:label>
-        <form:input path="password2" type="password" required="required" />
+        <form:password path="password2" required="required" />
         <form:errors path="password2" cssClass="text-warning" />
     </fieldset>
     <input class="btn btn-success" type="submit" value="Submit" />
