@@ -14,7 +14,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**" />
             <mvc:exclude-mapping path="/secure/**" />
-            <bean class="com.kinlhp.spring.mvc.controller.interceptor.TimeLoggingHandlerInterceptor"/>
+            <bean class="com.kinlhp.spring.mvc.controller.interceptor.TimeLoggingHandlerInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

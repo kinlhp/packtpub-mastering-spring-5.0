@@ -25,6 +25,7 @@ public class UserValidationControllerTest {
                 .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "birthDate", "NotNull"))
                 .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "country", "NotNull"))
                 .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "password", "Size"))
+                .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "password2", "Size"))
                 .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "userId", "Size"));
     }
 }

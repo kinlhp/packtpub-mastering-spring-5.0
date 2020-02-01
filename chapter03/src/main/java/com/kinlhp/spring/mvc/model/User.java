@@ -23,7 +23,7 @@ public class User {
     private String password = "";
 
     @Size(min = 8, message = "Enter at least 8 characters")
-    private String password2;
+    private String password2 = "";
 
     @Size(min = 8, message = "Enter at least 8 characters")
     private String userId = "";
