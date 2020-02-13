@@ -15,8 +15,13 @@
             <bean id="timeLoggingInterceptor" class="com.kinlhp.spring.mvc.controller.interceptor.TimeLoggingHandlerInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"> <!-- requires bean id to be localeResolver -->
+    <!-- <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"> requires bean id to be localeResolver -->
+        <!-- <property name="defaultLocale" value="en" /> -->
+    <!-- </bean> -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"> <!-- requires bean id to be localeResolver -->
         <property name="defaultLocale" value="en" />
+        <property name="cookieName" value="language" />
+        <property name="cookieMaxAge" value="7200" /> <!-- 2 hours -->
     </bean>
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> <!-- requires bean id to be messageSource -->
         <property name="basename" value="classpath:messages" /> <!-- messages.properties and messages_{locale}.properties -->
