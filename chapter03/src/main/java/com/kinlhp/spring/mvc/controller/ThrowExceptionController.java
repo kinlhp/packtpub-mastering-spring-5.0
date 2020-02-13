@@ -24,9 +24,9 @@ public class ThrowExceptionController {
     }
 
     @ExceptionHandler(value = IllegalStateException.class)
-    public ModelAndView handleIllegalStateException(HttpServletRequest request, IllegalStateException exception) {
-        LOGGER.error("Request " + request.getMethod() + " " + request.getRequestURI() + " threw an specific exception", exception);
-        ModelAndView modelAndView = new ModelAndView("common/specific-throw");
+    public ModelAndView handleIllegalStateException(final HttpServletRequest request, final IllegalStateException exception) {
+        LOGGER.error(String.format("Request %s %s threw an specific exception", request.getMethod(), request.getRequestURI()), exception);
+        final ModelAndView modelAndView = new ModelAndView("error/specific");
         modelAndView.addObject("exception", exception);
         modelAndView.addObject("method", request.getMethod());
         modelAndView.addObject("url", request.getRequestURI());

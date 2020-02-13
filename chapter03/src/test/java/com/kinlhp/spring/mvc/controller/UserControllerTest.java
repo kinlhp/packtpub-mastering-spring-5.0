@@ -7,18 +7,18 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-public class UserValidationControllerTest {
+public class UserControllerTest {
     private MockMvc mockMvc;
 
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new UserValidationController()).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new UserController()).build();
     }
 
     @Test
     public void testAllValidationErrors() throws Exception {
         this.mockMvc
-                .perform(MockMvcRequestBuilders.post("/create-user-with-validation").accept("application/html;charset=utf-8"))
+                .perform(MockMvcRequestBuilders.post("/user").accept("application/html;charset=utf-8"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.model().errorCount(6))
                 .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("user", "name", "Size"))

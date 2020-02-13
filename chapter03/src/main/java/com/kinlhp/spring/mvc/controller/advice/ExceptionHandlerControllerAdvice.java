@@ -12,13 +12,13 @@ public class ExceptionHandlerControllerAdvice {
     private static final Logger LOGGER = Logger.getLogger(ExceptionHandlerControllerAdvice.class);
 
     @ExceptionHandler(value = Exception.class)
-    public ModelAndView handleException(HttpServletRequest request, Exception exception) {
-        LOGGER.error("Request " + request.getMethod() + " " + request.getRequestURI() + " threw an common exception", exception);
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView handleException(final HttpServletRequest request, final Exception exception) {
+        LOGGER.error(String.format("Request %s %s threw an common exception", request.getMethod(), request.getRequestURI()), exception);
+        final ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("exception", exception);
         modelAndView.addObject("method", request.getMethod());
         modelAndView.addObject("url", request.getRequestURI());
-        modelAndView.setViewName("common/common-throw");
+        modelAndView.setViewName("error/default");
         return modelAndView;
     }
 }

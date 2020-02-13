@@ -1,8 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<h1>Create User</h1>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<h1>
+    <spring:message code="greeting.caption" />
+    <spring:message code="welcome.caption" />
+</h1>
+<h2>Create user</h2>
 <form:form method="post" modelAttribute="user">
     <form:errors path="" cssClass="text-warning" />
     <form:hidden path="guid" />
